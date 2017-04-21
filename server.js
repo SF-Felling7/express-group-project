@@ -12,7 +12,7 @@ var songData = [
 // middle ware that makes the files
 // in the public folder visible
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/song', function(req, res) {
   console.log('in get song route');
@@ -23,6 +23,13 @@ app.get('/song', function(req, res) {
 app.post('/song', function(req, res) {
   console.log('in post route');
   console.log('req.body ->', req.body);
+for (var i = 0; i < songData.length; i++) {
+  if(songData[i].name === req.body.name){
+    console.log("match found");
+    return;
+  }
+}
+
   songData.push(req.body);
   res.sendStatus(201);
 });

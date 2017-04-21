@@ -17,7 +17,9 @@ function addSong() {
 
   var objectToSend = {
     name: songName
-  }
+
+  };
+
 
   $.ajax({
     method: 'POST',
@@ -26,5 +28,20 @@ function addSong() {
     success: function(response) {
       console.log(response);
     }
-  })
+  });
+
+$.ajax({
+    method: 'GET',
+    url: '/song',
+    success: function (response){
+      console.log(response);
+
+    }
+});
+  function displayArray(songData) {
+  for (var i = 0; i < songData.length; i++) {
+      $('.songContainer').append("<div id ='+"songData[i].name"+>', objectToSend.name, '</div>');
+    }
+   }
+
 }
